@@ -10,7 +10,7 @@ resource "aws_nat_gateway" "NatGateway" {
     count = "${length(data.aws_availability_zones.azs.names)}"
     subnet_id = "${element(var.Public-subnet-id, count.index)}"
 tags= {
-    name = "NatGateway"
+    name = "NatGateway ${data.aws_availability_zones.azs.names[count.index]}"
 } 
 }
 

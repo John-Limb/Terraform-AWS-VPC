@@ -59,6 +59,7 @@ module "RouteTables" {
   inet-gw-id = module.InetGW.Internet-gateway-id
   public-subnet-id = module.Public-Subnets.Public-Subnet-id
   private-subnet-id = module.Private-Subnets.Private-subnet-id
+  Restricted-subnet-id = module.Restricted-Subnets.Restricted-Subnet-id
   NatGateway = module.NatGateway.Nat-Gateway-id
 }
 module "NatGateway"{
