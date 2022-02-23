@@ -39,15 +39,30 @@ module "Public-Subnets" {
 }
 module "Private-Subnets" {
   source                  = "./src/Subnet-Private"
-  CIDR-Block = "${var.Private-CIDR}"
+  CIDR-Block = "${var.CIDR-Block}"
+  Private-CIDR = "${var.Private-CIDR}"
   vpc_id = aws_vpc.Main.id
 }
 module "Restricted-Subnets" {
   source                  = "./src/Subnet-Restricted"
-  CIDR-Block = "${var.Restricted-CIDR}"
+  CIDR-Block = "${var.CIDR-Block}"
+  Restricted-CIDR = "${var.Restricted-CIDR}"
   vpc_id = aws_vpc.Main.id
 }
 module "InetGW" {
   source = "./src/InetGW"
   vpc_id = aws_vpc.Main.id
+}
+module "RouteTables" {
+  source = "./src/RouteTable"
+  vpc_id = aws_vpc.Main.id
+  inet-gw-id = module.InetGW.Internet-gateway-id
+  public-subnet-id = module.Public-Subnets.Public-Subnet-id
+  private-subnet-id = module.Private-Subnets.Private-subnet-id
+  NatGateway = module.NatGateway.Nat-Gateway-id
+}
+module "NatGateway"{
+  source = "./src/NatGateway"
+  vpc_id = aws_vpc.Main.id
+  Public-subnet-id = module.Public-Subnets.Public-Subnet-id
 }
