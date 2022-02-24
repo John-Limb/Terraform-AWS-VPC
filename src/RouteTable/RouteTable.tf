@@ -43,8 +43,7 @@ resource "aws_route" "PrivateRoute" {
     count = "${length(data.aws_availability_zones.azs.names)}"
     route_table_id = "${element(aws_route_table.PrivateRouteTable.*.id, count.index)}"
     destination_cidr_block = "0.0.0.0/0"
-    nat_gateway_id = "{element(var.NatGateway, count.index)}"
-  
+    nat_gateway_id = "{element(var.NatGateway, count.index)}" 
 }
 resource "aws_route_table_association" "Private-Route-Association" {
 route_table_id = "${element(aws_route_table.PrivateRouteTable.*.id, count.index)}"
@@ -63,8 +62,7 @@ resource "aws_route" "RestrictedRoute" {
     count = "${length(data.aws_availability_zones.azs.names)}"
     route_table_id = "${element(aws_route_table.Restricted.*.id, count.index)}"
     destination_cidr_block = "0.0.0.0/0"
-    nat_gateway_id = "{element(var.NatGateway, count.index)}"
-  
+    nat_gateway_id = "{element(var.NatGateway, count.index)}"  
 }
 resource "aws_route_table_association" "Restricted-Route-Association" {
 route_table_id = "${element(aws_route_table.Restricted.*.id, count.index)}"
