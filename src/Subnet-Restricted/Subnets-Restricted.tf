@@ -39,7 +39,7 @@ resource "aws_network_acl" "Restricted" {
         protocol = "-1"
         rule_no = "100"
         action = "allow"
-        cidr_block = "0.0.0.0/0"
+        cidr_block = "${var.CIDR-Block}"
         to_port = "0"
         from_port = "0"
     }

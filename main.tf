@@ -1,12 +1,12 @@
 terraform {
   backend "s3" {
     #define bucket and key
-    bucket = "terraform-state-980971185860"
-    key    = "VPC/terraform.tfstate"
+    bucket = "var.bucket"
+    key    = "var.key"
     region = "eu-west-2"
 
     #define dynamo DB tables to use
-    dynamodb_table = "terraform-locks-980971185860"
+    dynamodb_table = "var.dynamodb_table"
     encrypt        = true
   }
 }
@@ -61,9 +61,10 @@ module "RouteTables" {
   private-subnet-id = module.Private-Subnets.Private-subnet-id
   Restricted-subnet-id = module.Restricted-Subnets.Restricted-Subnet-id
   NatGateway = module.NatGateway.Nat-Gateway-id
+
 }
 module "NatGateway"{
   source = "./src/NatGateway"
   vpc_id = aws_vpc.Main.id
   Public-subnet-id = module.Public-Subnets.Public-Subnet-id
-}
+} 

@@ -2,3 +2,4 @@
 *.hcl
 *.exe
 *.tfstate
+.terraform/modules/modules.json

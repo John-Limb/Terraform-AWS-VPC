@@ -17,8 +17,8 @@ resource "aws_subnet" "Public" {
     map_public_ip_on_launch = true
 
     tags = {
-        Name  = "Private Subnet - ${data.aws_availability_zones.azs.names[count.index]}"
-        Tier = "Private"
+        Name  = "Public Subnet - ${data.aws_availability_zones.azs.names[count.index]}"
+        Tier = "Public"
         AZ = "${data.aws_availability_zones.azs.names[count.index]}"
     }
 }
@@ -30,7 +30,7 @@ resource "aws_network_acl" "public" {
         protocol = "-1"
         rule_no = "100"
         action = "allow"
-        cidr_block = "${var.CIDR-Block}"
+        cidr_block = "0.0.0.0/0"
         to_port = "0"
         from_port = "0"
 

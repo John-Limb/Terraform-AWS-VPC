@@ -31,7 +31,7 @@ resource "aws_network_acl" "Private" {
         protocol = "-1"
         rule_no = "100"
         action = "allow"
-        cidr_block = "${var.CIDR-Block}"
+        cidr_block = "0.0.0.0/0"
         to_port = "0"
         from_port = "0"
 

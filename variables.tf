@@ -20,3 +20,10 @@ variable "Restricted-CIDR" {
   type = string
   default = "10.0.2.0/24"
 }
+
+variable "bucket"{
+}
+variable "key" {
+}
+variable "dynamodb_table" {
+}
