@@ -68,3 +68,7 @@ module "NatGateway"{
   vpc_id = aws_vpc.Main.id
   Public-subnet-id = module.Public-Subnets.Public-Subnet-id
 } 
+module "Logging"{
+  source = "./src/Logging"
+  vpc_id = aws_vpc.Main.id
+}
